@@ -4,6 +4,7 @@
   "description": "A kodi remote built in react and redux",
   "main": "index.js",
   "scripts": {
+    "dev": "webpack-dev-server",
     "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,13 +12,20 @@
   "author": "Dawid van der Hoven",
   "license": "ISC",
   "dependencies": {
-    "ws": "^2.0.3"
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-hot-loader": "3.0.0-beta",
+    "react-redux": "^5.0.2",
+    "react-router-dom": "next",
+    "redux": "^3.6.0"
   },
   "devDependencies": {
     "babel-core": "^6.22.1",
     "babel-eslint": "^7.1.1",
     "babel-loader": "^6.2.10",
     "babel-preset-es2015": "^6.22.0",
+    "babel-preset-react": "^6.22.0",
+    "babel-preset-stage-2": "^6.22.0",
     "dotenv": "^4.0.0",
     "eslint": "^3.15.0",
     "eslint-config-airbnb": "^14.1.0",
@@ -25,6 +33,7 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.9.0",
-    "webpack": "^2.2.1"
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.3.0"
   }
 }

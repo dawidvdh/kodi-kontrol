@@ -1,20 +1,37 @@
 require('dotenv').config();
 
+const { resolve } = require('path');
 const webpack = require('webpack');
-const path = require('path');
 
 module.exports = {
-  entry: './src/client.js',
+  entry: [
+    'react-hot-loader/patch',
+    'webpack-dev-server/client?http://localhost:8080',
+    'webpack/hot/only-dev-server',
+    './client.jsx',
+  ],
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist'),
+    path: resolve(__dirname, 'dist'),
+    publicPath: '/',
+  },
+  context: resolve(__dirname, 'src'),
+  devtool: 'inline-source-map',
+  devServer: {
+    hot: true,
+    contentBase: resolve(__dirname, 'dist'),
+    watchContentBase: true,
+    publicPath: '/',
   },
   module: {
-    loaders: [{
-      test: /\.js$/,
+    rules: [{
+      test: /\.jsx?$/,
+      use: ['babel-loader', 'eslint-loader'],
       exclude: /node_modules/,
-      loaders: ['babel-loader', 'eslint-loader'],
     }],
+  },
+  resolve: {
+    extensions: ['.js', '.json', '.jsx'],
   },
   plugins: [
     new webpack.EnvironmentPlugin({
@@ -22,5 +39,7 @@ module.exports = {
       KODI_ADDRESS: process.env.KODI_ADDRESS,
       KODI_PORT: process.env.KODI_PORT,
     }),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NamedModulesPlugin(),
   ],
 };

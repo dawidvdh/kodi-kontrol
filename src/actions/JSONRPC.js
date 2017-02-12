@@ -1,0 +1,8 @@
+// 5.7 JSONRPC
+const JSONRPC_GET_CONFIGURATION = 'JSONRPC.GetConfiguration';
+const JSONRPC_INTROSPECT = 'JSONRPC.Introspect';
+const JSONRPC_NOTIFYALL = 'JSONRPC.NotifyAll';
+const JSONRPC_PERMISSION = 'JSONRPC.Permission';
+const JSONRPC_PING = 'JSONRPC.Ping';
+const JSONRPC_SET_CONFIGURATION = 'JSONRPC.SetConfiguration';
+const JSONRPC_VERSION = 'JSONRPC.Version';
