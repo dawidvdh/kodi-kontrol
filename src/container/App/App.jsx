@@ -11,20 +11,36 @@ import {
   InputUp,
   ShowInfo,
   InputBack,
+  SendText,
+  SendAction,
 } from '../../actions/Input';
+
+function dialog() {
+  const text = prompt('Search:', '');
+  if (!text) {
+    return false;
+  }
+  return text;
+}
 
 const performSocketConnection = () => {
   try {
     const socket = new WebSocket(`ws://${process.env.KODI_ADDRESS}:${process.env.KODI_PORT}/jsonrpc`);
     socket.onopen = () => {
-      console.log('socket opens!');
       socket.send(JSON.stringify(GetActivePlayers()));
     };
     socket.onmessage = (event) => {
       console.log(event.data);
     };
+
     window.onkeydown = (e) => {
       switch (e.keyCode) {
+        case key.NUM_MINUS:
+          return socket.send(JSON.stringify(SendAction('volumedown')));
+        case key.NUM_PLUS:
+          return socket.send(JSON.stringify(SendAction('volumeup')));
+        case key.T:
+          return socket.send(JSON.stringify(SendText(dialog())));
         case key.SPACE:
           return socket.send(JSON.stringify(PlayPause()));
         case key.F:

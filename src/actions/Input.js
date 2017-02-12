@@ -4,7 +4,7 @@
 const INPUT_BACK = 'Input.Back';
 const INPUT_CONTEXT_MENU = 'Input.ContextMenu';
 const INPUT_DOWN = 'Input.Down';
-// const INPUT_EXECUTE_ACTION = 'Input.ExecuteAction';
+const INPUT_EXECUTE_ACTION = 'Input.ExecuteAction';
 const INPUT_HOME = 'Input.Home';
 const INPUT_INFO = 'Input.Info';
 const INPUT_LEFT = 'Input.Left';
@@ -48,6 +48,9 @@ export function ShowCodec() {
 export function ShowOSD() {
   return { jsonrpc: '2.0', method: INPUT_SHOW_OSD, id: Math.random(0, 100) };
 }
-export function SendText() {
-  return { jsonrpc: '2.0', method: INPUT_SEND_TEXT, id: Math.random(0, 100) };
+export function SendText(text) {
+  return { jsonrpc: '2.0', method: INPUT_SEND_TEXT, id: Math.random(0, 100), params: { text } };
+}
+export function SendAction(action) {
+  return { jsonrpc: '2.0', method: INPUT_EXECUTE_ACTION, id: Math.random(0, 100), params: { action } };
 }
