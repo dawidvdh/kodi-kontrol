@@ -1,4 +1,5 @@
 import React from 'react';
+import * as annyang from 'annyang';
 import * as key from '../../actions/keycodes';
 
 import { GetActivePlayers, PlayPause, Stop } from '../../actions/Player';
@@ -16,12 +17,14 @@ import {
 } from '../../actions/Input';
 
 function dialog() {
-  const text = prompt('Search:', '');
+  const text = prompt('Search:', ''); // eslint-disable-line no-alert
   if (!text) {
     return false;
   }
   return text;
 }
+
+annyang.start();
 
 const performSocketConnection = () => {
   try {
@@ -32,6 +35,17 @@ const performSocketConnection = () => {
     // socket.onmessage = (event) => {
     //   console.log(event.data);
     // };
+
+    /* eslint-disable */
+    const commands = {
+      'play': () => { socket.send(JSON.stringify(PlayPause())); },
+      'stop': () => { socket.send(JSON.stringify(Stop())); },
+      'send': (userSaid) => { socket.send(JSON.stringify(SendText(userSaid))); },
+      'notify': () => { socket.send(JSON.stringify(ShowNotification())); },
+    };
+    /* eslint-disable */
+
+    annyang.addCommands(commands);
 
     window.onkeydown = (e) => {
       switch (e.keyCode) {
