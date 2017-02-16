@@ -1,7 +1,7 @@
 import React from 'react';
 import * as key from '../../actions/keycodes';
 
-import { GetActivePlayers, PlayPause } from '../../actions/Player';
+import { GetActivePlayers, PlayPause, Stop } from '../../actions/Player';
 import { ShowNotification, ToggleFullScreen } from '../../actions/GUI';
 import {
   InputDown,
@@ -13,7 +13,6 @@ import {
   InputBack,
   SendText,
   SendAction,
-  Stop,
 } from '../../actions/Input';
 
 function dialog() {
