@@ -13,8 +13,8 @@ const PLAYER_PLAYPAUSE = 'Player.PlayPause';
 // const PLAYER_SET_REPEAT = 'Player.SetRepeat';
 // const PLAYER_SET_SHUFFLE = 'Player.SetShuffle';
 // const PLAYER_SET_SPEED = 'Player.SetSpeed';
-// const PLAYER_SET_SUBTITLE = 'Player.SetSubtitle';
-// const PLAYER_STOP = 'Player.Stop';
+const PLAYER_SET_SUBTITLE = 'Player.SetSubtitle';
+const PLAYER_STOP = 'Player.Stop';
 // const PLAYER_ZOOM = 'Player.Zoom';
 
 export function GetActivePlayers() {
@@ -32,6 +32,28 @@ export function PlayPause() {
     id: Math.random(0, 100),
     params: {
       playerid: 1,
+    },
+  };
+}
+
+export function Stop() {
+  return {
+    jsonrpc: '2.0',
+    method: PLAYER_STOP,
+    id: Math.random(0, 100),
+    params: {
+      playerid: 1,
+    },
+  };
+}
+
+export function toggleSubtitles() {
+  return {
+    jsonrpc: '2.0',
+    method: PLAYER_SET_SUBTITLE,
+    id: Math.random(0, 100),
+    params: {
+      enable: false,
     },
   };
 }

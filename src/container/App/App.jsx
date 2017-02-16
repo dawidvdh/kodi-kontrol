@@ -13,6 +13,7 @@ import {
   InputBack,
   SendText,
   SendAction,
+  Stop,
 } from '../../actions/Input';
 
 function dialog() {
@@ -29,12 +30,14 @@ const performSocketConnection = () => {
     socket.onopen = () => {
       socket.send(JSON.stringify(GetActivePlayers()));
     };
-    socket.onmessage = (event) => {
-      console.log(event.data);
-    };
+    // socket.onmessage = (event) => {
+    //   console.log(event.data);
+    // };
 
     window.onkeydown = (e) => {
       switch (e.keyCode) {
+        case key.S:
+          return socket.send(JSON.stringify(Stop()));
         case key.NUM_MINUS:
           return socket.send(JSON.stringify(SendAction('volumedown')));
         case key.NUM_PLUS:
@@ -66,7 +69,7 @@ const performSocketConnection = () => {
       }
     };
   } catch (error) {
-    console.log(error.message);
+    console.error(error.message);
   }
 };
 
